@@ -1,6 +1,13 @@
 import { TextField, MenuItem } from "@mui/material";
 
-export const MultiSelectValueInput = ({ value = [], onChange, options }: any) => (
+interface Props{
+  value:string[],
+  onChange:(val:string)=>void,
+  options:string[]
+}
+
+
+export const MultiSelectInput = ({ value = [], onChange, options }: Props) => (
   <TextField
     select
     size="small"

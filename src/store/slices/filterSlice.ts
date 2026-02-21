@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import type { PayloadAction } from "@reduxjs/toolkit";
 import type { FilterRule } from "../../components/FilterBuilder/types";
 
 interface FilterState {
@@ -7,7 +7,7 @@ interface FilterState {
 }
 
 const initialState: FilterState = {
-  rules: [{id:"3",field:null,operator:"<",value:null}],
+  rules: [{ id: "3", field: null, operator: "<", value: null }],
 };
 
 const filterSlice = createSlice({
@@ -23,8 +23,33 @@ const filterSlice = createSlice({
         value: null,
       });
     },
+    updateRule: (
+      state,
+      action: PayloadAction<{
+        id: string;
+        changes: Partial<Omit<FilterRule, "id">>;
+      }>,
+    ) => {
+      const { id, changes } = action.payload;
+
+      const rule = state.rules.find((rule) => id === rule.id);
+
+      if (rule) {
+        Object.assign(rule, changes);
+      }
+    },
+
+    removeRule: (state, action: PayloadAction<{ id: string }>) => {
+      const { id } = action.payload;
+
+      state.rules = state.rules.filter((rule) => rule.id !== id);
+    },
+    clearAllRule: (state) => {
+      state.rules = [];
+    },
   },
 });
 
-export const { addRule } = filterSlice.actions;
+export const { addRule, updateRule, removeRule, clearAllRule } =
+  filterSlice.actions;
 export default filterSlice.reducer;
