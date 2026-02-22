@@ -1,35 +1,39 @@
 import { TextField, MenuItem } from "@mui/material";
+import type { SelectChangeEvent } from "@mui/material/Select";
 
-interface Props{
-  value:string[],
-  onChange:(val:string)=>void,
-  options:string[]
+interface Props {
+  value: string[];
+  onChange: (val: string[]) => void;
+  options: string[];
 }
 
+export const MultiSelectInput = ({ value = [], onChange, options }: Props) => {
+const safeValue = Array.isArray(value) ? value : []
+  const handleChange = (event: SelectChangeEvent<string[]>) => {
+    const val = event.target.value;
 
-export const MultiSelectInput = ({ value = [], onChange, options }: Props) => (
-  <TextField
-    select
-    size="small"
-    value={Array.isArray(value) ? value : []}
-    onChange={(e) =>
-      onChange(
-        typeof e.target.value === "string"
-          ? e.target.value.split(",")
-          : (e.target.value as string[])
-      )
-    }
-    slotProps={{
-      select: {
+    onChange(
+      typeof val === "string"
+        ? val.split(",")
+        : val
+    );
+  };
+
+  return (
+    <TextField
+      select
+      size="small"
+      value={safeValue}
+      SelectProps={{
         multiple: true,
-      },
-    }}
-  >
-    {options.map((opt) => (
-      <MenuItem key={opt} value={opt}>
-        {opt}
-      </MenuItem>
-    ))}
-  </TextField>
-
-);
+        onChange:handleChange 
+      }}
+    >
+      {options.map((opt) => (
+        <MenuItem key={opt} value={opt}>
+          {opt}
+        </MenuItem>
+      ))}
+    </TextField>
+  );
+};

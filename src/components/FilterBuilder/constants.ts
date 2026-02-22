@@ -1,36 +1,39 @@
 export const fieldRegistry = {
-  name: {
-    label: "name",
-    type: "text",
-  },
-  age: {
-    label: "age",
-    type: "number",
-  },
-  createdAt: {
-    label: "createdAt",
-    type: "date",
-  },
-  amount: { label: "Amount", type: "currency" },
-  status: {
-    label: "Status",
+  id: { label: "ID", type: "number" },
+  name: { label: "Name", type: "text" },
+  email: { label: "Email", type: "text" },
+  department: {
+    label: "Department",
     type: "singleSelect",
-    options: [
-        { label: "Open", value: "open" },
-    { label: "Closed", value: "closed" },
-    { label: "Pending", value: "pending" }
-        ],
+    options: ["Engineering", "HR", "Sales", "Marketing", "Finance"],
   },
-  tags: { label: "Tags", type: "multiSelect", options: ["A", "B", "C"] },
-  isActive: { label: "Is Active", type: "boolean" },
+  role: {
+    label: "Role",
+    type: "singleSelect",
+    options: ["Manager", "Developer", "Designer", "Analyst", "Intern"],
+  },
+  salary: { label: "Salary", type: "number" },
+  joinDate: { label: "Joining Date", type: "date" },
+  isActive: { label: "Active Status", type: "boolean" },
+  skills: {
+    label: "Skills",
+    type: "multiSelect",
+    options: ["JavaScript", "TypeScript", "Python", "React", "NodeJS", "UI/UX"],
+  },
+  addressCity: { label: "City", type: "text" },
+  addressState: { label: "State", type: "text" },
+  addressCountry: { label: "Country", type: "text" },
+  projects: { label: "Number of Projects", type: "number" },
+  lastReview: { label: "Last Review Date", type: "date" },
+  performanceRating: { label: "Performance Rating", type: "number" },
 } as const;
 
 export const operatorTypeMap = {
   text: ["equals", "contains", "startsWith", "endsWith", "doesNotContain"],
-  number: ["equals", "greaterThan", "lessThan", "gte", "lte"],
-  date: ["between"],
-  currency: ["between"],
+  number: ["equals", "greaterThan", "lessThan", "gte", "lte", "between"],
+  date: ["equals", "before", "after", "between"], // single or range
+  boolean: ["is", "isNot"],
   singleSelect: ["is", "isNot"],
   multiSelect: ["in", "notIn"],
-  boolean: ["is"],
+  currency: ["equals", "greaterThan", "lessThan", "gte", "lte", "between"], 
 } as const;

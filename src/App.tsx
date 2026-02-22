@@ -1,13 +1,13 @@
 import './App.css'
+import { DynamicFilter } from './components/DynamicFilter'
 
-import { FilterBuilderComponent } from './components/FilterBuilder'
 function App() {
  
 
   return (
    
-    <FilterBuilderComponent/>
-   
+
+   <DynamicFilter/>
   
   )
 }

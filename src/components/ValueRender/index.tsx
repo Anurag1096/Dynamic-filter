@@ -20,5 +20,5 @@ export function ValueRenderer({ field, value, onChange }:Props) {
       onChange={onChange}
        options={"options" in config ? config.options : undefined}
     />
-  );
+  )
 }

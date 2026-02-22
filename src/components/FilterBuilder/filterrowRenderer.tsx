@@ -16,11 +16,12 @@ export const FilterRowRenderer = ({ rule }: Props) => {
   const operators = getOperator(rule.field as keyof typeof fieldRegistry);
 
   return (
-    <Stack direction="row" spacing={2} alignItems="center">
+    <Stack direction="row" spacing={3} alignItems="center">
       {/* FIELD SELECT */}
       <Select
         size="small"
-        value={rule.field}
+        
+        value={rule.field || ""}
         displayEmpty
         onChange={(e) =>
           dispatch(
@@ -43,7 +44,7 @@ export const FilterRowRenderer = ({ rule }: Props) => {
       {rule.field && (
         <Select
           size="small"
-          value={rule.operator}
+          value={rule.operator || ""}
           displayEmpty
           disabled={!rule.field}
           onChange={(e) =>
@@ -71,7 +72,7 @@ export const FilterRowRenderer = ({ rule }: Props) => {
       {rule.field && rule.operator && (
         <ValueRenderer
           field={rule.field}
-          value={rule.value}
+          value={rule.value || ""}
           onChange={(val: FilterValue) =>
             dispatch(
               updateRule({
