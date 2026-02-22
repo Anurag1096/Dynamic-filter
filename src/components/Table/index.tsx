@@ -28,16 +28,21 @@ interface Props {
 // In future we can go one level more deep and add another component which will only render
 // the sorted data 
 export default function TableRendering({ data }: Props) {
+    console.log("whole data", data)
   const [orderBy, setOrderBy] = useState<keyof Employee | "city">("id");
   const [order, setOrder] = useState<Order>("asc");
   const TableRowData = [
     { id: "id", label: "ID" },
     { id: "name", label: "Name" },
     { id: "email", label: "Email" },
+    {id:'role',label:'Role'},
     { id: "department", label: "Department" },
     { id: "salary", label: "Salary" },
     { id: "city", label: "City" },
+    {id:'state',label:'State'},
+    {id:'country',label:'Country'},
     { id: "projects", label: "Projects" },
+    {id:'lastReview', label:'Last Review'},
     { id: "performanceRating", label: "Rating" },
     { id: "isActive", label: "Status" },
   ];
@@ -79,7 +84,7 @@ export default function TableRendering({ data }: Props) {
     });
   }, [data, order, orderBy]);
 
-  if(!data) return (<div><span>No data</span></div>)
+  if(!data || data.length === 0) return (<div><span>No data</span></div>)
 
   return (
     <TableContainer component={Paper} sx={{ maxHeight: 600 }}>
@@ -108,13 +113,17 @@ export default function TableRendering({ data }: Props) {
             <TableRow key={emp.id} hover>
               <TableCell>{emp.id}</TableCell>
               <TableCell>
-                <Typography fontWeight={500}>{emp.name}</Typography>
+            <Typography fontWeight={500}>{emp.name}</Typography>
               </TableCell>
               <TableCell>{emp.email}</TableCell>
+              <TableCell>{emp.role}</TableCell>
               <TableCell>{emp.department}</TableCell>
               <TableCell>${emp.salary.toLocaleString()}</TableCell>
               <TableCell>{emp.address.city}</TableCell>
+              <TableCell>{emp.address.state}</TableCell>
+              <TableCell>{emp.address.country}</TableCell>
               <TableCell>{emp.projects}</TableCell>
+              <TableCell>{emp.lastReview}</TableCell>
               <TableCell>{emp.performanceRating}</TableCell>
               <TableCell>
                 <Chip

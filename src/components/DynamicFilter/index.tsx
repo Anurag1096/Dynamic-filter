@@ -15,8 +15,6 @@ export const DynamicFilter=()=>{
     const filteredData=useAppSelector(FilteredData)
 
     
-    if (!filteredData) return <div>Loading...</div>
-    
     return (<>
     <FilterBuilderComponent/>
     <TableRendering data={filteredData}/>
