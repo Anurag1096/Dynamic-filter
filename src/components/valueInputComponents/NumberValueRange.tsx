@@ -14,10 +14,14 @@ export default function NumberRangeValue({
   value = { min: "", max: "" },
   onChange,
 }: Props) {
+  const isError =
+    value.min !== undefined && value.max !== undefined && value.min > value.max;
+
   return (
     <Stack direction="row" spacing={1}>
       <TextField
         type="number"
+        helperText={isError ? "Min cannot be greater than Max" : ""}
         size="small"
         placeholder="Min"
         value={value.min}
