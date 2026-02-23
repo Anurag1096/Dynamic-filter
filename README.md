@@ -13,6 +13,29 @@ Built using **React + TypeScript + Redux Toolkit + fakerjs(for dataset creation)
 - Supports multiple data types:
 ---
 
+
+## Project Setup
+
+# Clone the repository
+```
+git clone <your-repo-url>
+cd dynamic-filter-builder
+
+```
+
+# Install dependencies
+
+pnpm install 
+
+# Run development server
+pnpm dev
+
+# App will run at
+```
+http://localhost:5173
+```
+
+
 ## 🏗 Architecture Overview
 
 The application uses a **configuration-first approach**.
@@ -106,28 +129,13 @@ The core component responsible for building filter rules.
 ## Table
 Displays employee data received from DynamicFilter.
 
-#Features:
+# Features:
 
 -Renders filtered data
 
 -Supports column-based sorting
 
 -Allows ascending and descending order per column
-
-
-## ValueInputComponent
-Provides a map operator for different input components used based on the field type.
-
-## ValueRender
-It figures out which input componet to render based on the type of field eg- text,number,range etc.
-
-
-## data
-
-Handles creation of the data using faker js function , the data returned is in json format and the exported function can be used to genrate variable row's of data.
-
-## store
-
 
 ## ValueInputComponents
 
