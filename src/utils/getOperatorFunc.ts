@@ -5,5 +5,5 @@ export function getOperatorFunc<T extends keyof OperatorHandlerMapType>(
     fieldType:T,
     operator:OperatorKey
 ){
- return operatorHandlerMap[fieldType]?.[operator]
+ return operatorHandlerMap[fieldType]?.[operator as keyof typeof operatorHandlerMap[keyof OperatorHandlerMapType]]
 }

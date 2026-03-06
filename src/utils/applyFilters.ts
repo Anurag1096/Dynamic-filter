@@ -29,7 +29,7 @@ export function applyFilters(
       // check 
       if (!operatorFunc) return true;
       
-      return operatorFunc(fieldValue, rule.value);
+      return (operatorFunc as (value: any, ruleValue: any) => boolean)(fieldValue, rule.value);
     });
   });
 }
