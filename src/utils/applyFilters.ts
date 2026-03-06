@@ -1,7 +1,7 @@
 import { fieldRegistry } from "../components/FilterBuilder/constants";
 import type { FilterRule } from "../components/FilterBuilder/types";
 import type { Employee } from "./types/employType";
-import { operatorHandlerMap } from "./OperatorMap";
+import { getOperatorFunc } from "./getOperatorFunc";
 import { getFieldValue } from "./getFieldValue";
 export function applyFilters(
   data: Employee[],
@@ -16,14 +16,16 @@ export function applyFilters(
       if (!rule.field || !rule.operator) return true;
       //form registry it get the field which is need in the format {label:"",type:""}
       const fieldConfig = fieldRegistry[rule.field];
+
       //checking if its valid 
       if (!fieldConfig) return true;
+      
     // now we get the value stored in the employe data
     // getFieldValue finds out which field has what data in it , nested filed is also handled
       const fieldValue = getFieldValue(employe, rule.field);
       // now we use the type and operator to get the function which is used to filter out the data
-      const operatorFunc =
-        operatorHandlerMap[fieldConfig.type]?.[rule.operator];
+      const operatorFunc =getOperatorFunc(fieldConfig.type,rule.operator)
+        // operatorHandlerMap[fieldConfig.type]?.[rule.operator];
       // check 
       if (!operatorFunc) return true;
       

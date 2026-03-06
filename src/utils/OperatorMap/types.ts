@@ -49,7 +49,9 @@ export type BooleanOperators = {
   is: OperatorFn<boolean, boolean>;
 };
 
-export type OperatorHandlerMap = {
+
+
+export type OperatorHandlerMapType = {
 text: TextOperators;
 number: NumberOperators;
 currency: NumberOperators;

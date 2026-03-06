@@ -1,4 +1,4 @@
-import {fieldRegistry} from './constants'
+import {fieldRegistry, operatorTypeMap} from './constants'
 
 
 export type FieldName = keyof typeof fieldRegistry
@@ -20,11 +20,12 @@ type MultiSelect={
 }
 
 export type FilterValue= string | number | Date | boolean | CurrencyRange| Range  | MultiSelect | null
-
+export  type OperatorKey =
+  (typeof operatorTypeMap)[keyof typeof operatorTypeMap][number];
 
 export  interface FilterRule{
     id:string,
     field:FieldName | null,
-    operator:string | null,
+    operator:OperatorKey | null,
     value:FilterValue
 }
